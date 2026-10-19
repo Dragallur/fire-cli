@@ -1,0 +1,33 @@
+# Australian "Black Summer" bushfires 2019/20, south-east Australia
+# (New South Wales and Victoria), October 2019 - February 2020.
+#
+# Large area, five months: expect hundreds of thousands of fire detections
+# (a GeoPackage of a few hundred MB) from ~60 FIRMS requests (up to an hour), and
+# five EWDS requests for the indices, which can take several hours in the
+# Copernicus queue. Everything is cached, so an interrupted run picks up where
+# it stopped.
+
+name: australia-2019-20
+description: Black Summer bushfires, south-east Australia, Oct 2019 - Feb 2020
+
+bbox: [140.0, -39.5, 154.0, -27.5]
+
+start: 2019-10-01
+end: 2020-02-29
+
+# FFDI is the index Australian agencies used operationally at the time.
+indices: [ffdi, fwi, kbdi]
+grid: 0.25
+
+# VIIRS (375 m) alone gives the detail; add modis for the longer-running record.
+sensors: [viirs-snpp, modis]
+
+basemap: true
+osm: true
+osm_zoom: null
+
+output: fire-cli-output/australia-2019-20
+
+# After downloading: GeoTIFFs (with QGIS styles) in rasters/, and a day-by-day animation.
+render: true
+animation: animation.mp4  # 152 frames: MP4 is far smaller than GIF

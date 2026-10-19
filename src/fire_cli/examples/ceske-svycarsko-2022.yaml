@@ -1,0 +1,36 @@
+# České Švýcarsko (Bohemian Switzerland) wildfire, July-August 2022.
+# The largest wildfire in modern Czech history: it started near Hřensko on
+# 24 July 2022 and burned over 1000 ha of the national park.
+#
+# Small area, three weeks: a quick download (a few minutes on the FIRMS side,
+# one EWDS request for the fire danger indices).
+
+name: ceske-svycarsko-2022
+description: České Švýcarsko wildfire, Czechia, July-August 2022
+
+# Area: [west, south, east, north] in WGS84 degrees, or point area_file at a
+# GeoJSON / GeoPackage / Shapefile and its extent is used instead.
+bbox: [13.95, 50.75, 14.65, 51.0]
+# area_file: my_area.geojson
+
+start: 2022-07-20
+end: 2022-08-10
+
+# Fire danger indices from CEMS (ERA5, 0.25° ~ 28 km grid). `fire-cli info` lists all.
+# At this grid size the area is only a few cells: the indices show the regional
+# fire weather, the FIRMS detections show the fire itself.
+indices: [fwi, ffdi]
+grid: 0.25
+
+# Active-fire detections from NASA FIRMS.
+sensors: [viirs-snpp, viirs-noaa20, modis]
+
+basemap: true      # Natural Earth borders, rivers, lakes, towns (GeoPackage layers)
+osm: true          # OpenStreetMap tiles as a GeoTIFF background
+osm_zoom: null     # null = most detailed zoom within the tile limit
+
+output: fire-cli-output/ceske-svycarsko-2022
+
+# After downloading: GeoTIFFs (with QGIS styles) in rasters/, and a day-by-day animation.
+render: true
+animation: animation.gif
